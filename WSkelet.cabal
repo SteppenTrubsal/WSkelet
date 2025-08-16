@@ -17,14 +17,13 @@ common options
     ghc-options:        -Wall -O3 -threaded
     default-language:   Haskell2010
     build-depends:    
-                        --aeson,
+                        aeson,
                         base,
-                        --bytestring,
-                        --cookie,
+                        bytestring,
                         --http-types,
                         stm,
+                        template-haskell,
                         text,
-                        vault,
                         wai,
                         wai-websockets,
                         warp,
@@ -37,9 +36,8 @@ executable WSkelet
     hs-source-dirs:   src
     main-is:          Main.hs
     other-modules:
-                      Auth,
                       Core,
                       Core.App,
-                      Core.Env,
-                      Core.Route
+                      Core.Command,
+                      Core.Env
     -- other-extensions:
