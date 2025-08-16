@@ -39,5 +39,6 @@ executable WSkelet
                       Core,
                       Core.App,
                       Core.Command,
-                      Core.Env
+                      Core.Env,
+                      Command
     -- other-extensions:

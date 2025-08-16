@@ -2,24 +2,15 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE GADTs #-}
 {-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE PolyKinds #-}
+
 module Core.Command where
 
-import           Data.Text (Text)
+import           Data.Text           (Text)
+import qualified Data.Text           as T
 import           Language.Haskell.TH
 
-data Command
-  = C_GetPageCtx
-
-type family Req c where
-  Req 'C_GetPageCtx = ()
-
-type family Res c where
-  Res 'C_GetPageCtx = ()
-
-data SCommand (c :: Command) where
-  SGetPageCtx :: SCommand 'C_GetPageCtx
-
-class KnownCommand (c :: Command) where
+class KnownCommand (c :: k) where
   commandTag :: proxy c -> Text
 
 mkKnownCommandsInstances :: Name -> Q [Dec]
